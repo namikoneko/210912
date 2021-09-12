@@ -17,8 +17,9 @@ EOD;
 
   public function __construct($formArray, $table, $id)
   {
-    $row = ORM::for_table($table)->where("id", $id)->find_array();
-    $this->row = $row[0];//find_arrayは二次元配列なので先頭行のみは[0]をつける
+    //$row = ORM::for_table($table)->where("id", $id)->find_array();
+    //$this->row = $row[0];//find_arrayは二次元配列なので先頭行のみは[0]をつける
+    $this->getRow($table, $id);
     $str = <<<EOD
         <input type="hidden" name="id" value="{$id}">
 EOD;
@@ -26,6 +27,11 @@ EOD;
     parent::__construct($formArray);
 
   }//construct
+
+  private function getRow($table, $id)
+  {
+    $this->row = ORM::for_table($table)->find_one($id)->as_array();
+  }
 
   protected function replaceValue($formItem, $str)
   {

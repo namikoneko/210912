@@ -22,18 +22,8 @@ EOD;
       </form>
 EOD;
     $this->strArray["last"] = $str;
-     
-
-//    $str = <<<EOD
-//      <form action="{$actionUrl}" method="post">
-//        {$inputForm}
-//        <input type="submit" value="send">
-//      </form>
-//EOD;
-//    $this->str = $str;
 
   }//construct
-    //<input type="text" name="title">
 
   public function output()
   {

@@ -21,7 +21,6 @@ EOD;
       $showKey = $formItem["showKey"];
       $this->strArray[$showKey] =  $str;
     }//foreach
-      //$this->str = $str;
   }//construct
 
   protected function formTypeText($formItem)
@@ -65,8 +64,6 @@ EOD;
 
   protected function replaceValue($formItem, $str)
   {
-//    $col = $formItem["col"];
-//    $str = str_replace("valStr", $this->row["{$col}"], $str);
     return $str;
   }//method
 

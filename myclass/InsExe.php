@@ -11,20 +11,38 @@ class InsExe
 {
   protected $row;
 
-  public function __construct($formArray)
+  public function __construct($formArray, $table)
   {
-    $this->row = ORM::for_table("parent")->create();
+    //$this->row = ORM::for_table($table)->create();
+    $this->createRow($table);
+    $this->exe($formArray);
+//    foreach($formArray as $formItem)
+//    {
+//      $name = $formItem["name"];
+//      $col = $formItem["col"];
+//      //$this->row->$col = $name;
+//      $this->row->$col = Flight::request()->data->$name;
+//    }//foreach
+//      $this->row->save();
+      //header('Location: http://localhost/210905/');
+    //$this->str = $str;
+  }//construct
+
+  private function createRow($table)
+  {
+    $this->row = ORM::for_table($table)->create();
+  }
+
+  private function exe($formArray)
+  {
     foreach($formArray as $formItem)
     {
       $name = $formItem["name"];
       $col = $formItem["col"];
-      //$this->row->$col = $name;
       $this->row->$col = Flight::request()->data->$name;
     }//foreach
       $this->row->save();
-      //header('Location: http://localhost/210905/');
-    //$this->str = $str;
-  }//construct
+  }
 
 }//class
 

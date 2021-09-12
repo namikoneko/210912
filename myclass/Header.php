@@ -4,6 +4,10 @@ require_once "Html.php";
 class Header extends Html
 {
   private $str;
+  private $cdnLink = <<<EOD
+      <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+EOD;
 
   public function __construct()
   {
@@ -13,8 +17,7 @@ class Header extends Html
       <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/n    ew.min.css">
+      {$this->cdnLink}
       </head>
       <body>
  EOD;

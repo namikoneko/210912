@@ -12,7 +12,6 @@ class Footer extends Html
       </html>
  EOD;
      $this->str = $str;
-
   }
 
   public function output()

@@ -5,10 +5,14 @@ require_once './myclass/InsForm.php';
 require_once './myclass/GetRowParent.php';
 require_once './myclass/ShowRowTitle.php';
 require_once './myclass/LinkHtml.php';
+require_once './myclass/Header.php';
 
 Flight::route("/", function(){
 
-$dirname = "210905";
+//$dirname = "210905";
+
+$header = new Header();
+echo $header->output();
 
 //ins-form作成
   $formArray = [
@@ -38,6 +42,7 @@ $dirname = "210905";
   $showRows = $showrowtitle->output();
   foreach($showRows as $showRow)
   {
+//  print_r($showRow);
     echo $showRow["title"];
     echo "  ";
     echo $showRow["text"];
@@ -50,11 +55,13 @@ $dirname = "210905";
 });
 
 Flight::route("/insexe", function(){
+  $table = "parent";
   $formArray = [
       ["type" => "typeText", "name" => "title", "col" => "title"],
+      ["type" => "textarea", "name" => "text", "col" => "text"],
   //    ["type" => "textarea", "name" => "text", "col" => "text"],
   ];
-  new InsExe($formArray);
+  new InsExe($formArray,$table);
   Flight::redirect('/');
 });
 
@@ -100,4 +107,11 @@ Flight::route("/del/@id", function($id){
   $table = "parent";
   Del::exe($table, $id);
   Flight::redirect('/');
+});
+
+Flight::route("/test2", function(){
+//echo "test";
+  $row = ORM::for_table('parent')->find_one(1)->as_array();
+  print_r($row);
+  echo $row["title"];
 });

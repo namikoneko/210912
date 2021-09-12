@@ -14,8 +14,9 @@ class UpdExe
 
   public function __construct($formArray, $table)
   {
-    $id = Flight::request()->data->id;
-    $this->row = ORM::for_table($table)->find_one($id);
+//    $id = Flight::request()->data->id;
+//    $this->row = ORM::for_table($table)->find_one($id);
+    $this->getRow($table);
     $this->exe($formArray);
 //    $getrowone = new GetRowOne($id);
 //    $this->row = $getrowone->rows[0];
@@ -30,7 +31,13 @@ class UpdExe
 //      $this->row->save();
   }//construct
 
-  protected function exe($formArray)
+  private function getRow($table)
+  {
+    $id = Flight::request()->data->id;
+    $this->row = ORM::for_table($table)->find_one($id);
+  }
+
+  private function exe($formArray)
   {
     foreach($formArray as $formItem)
     {

@@ -3,12 +3,7 @@
 
 class LinkHtml
 {
-  private $str;
-
-  public function __construct()
-  {
-
-  }
+//  private $str;
 
   //public static function upd($hrefStr)
   public function upd($id)
@@ -30,6 +25,15 @@ class LinkHtml
     return $str;
   }
 
+  public function general($id, $childStr, $linkStr)
+  {
+    $hrefStr = $this->hrefStr($childStr, $id);
+    $str = "";
+    $str .= "<a href='hrefStr'>{$linkStr}</a>";
+    $str = str_replace("hrefStr", $hrefStr, $str);
+    return $str;
+  }
+
   private function hrefStr($type, $id)
   {
     $str = "";
@@ -40,7 +44,7 @@ class LinkHtml
 
   public function output()
   {
-    return $this->str;
+    //return $this->str;
     //echo $this->str;
   }
 
