@@ -1,5 +1,4 @@
 <?php
-require_once "GetRowOne.php";
 //require_once '../../libs/flight/Flight.php';
 require_once '../libs/flight/Flight.php';
 //require_once '../../libs/idiorm.php';

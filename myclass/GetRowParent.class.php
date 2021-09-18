@@ -1,5 +1,4 @@
 <?php
-//require_once "GetRow.php";
 
 class GetRowParent
 {

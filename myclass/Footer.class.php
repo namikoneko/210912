@@ -1,5 +1,4 @@
 <?php
-require_once "Html.php";
 
 class Footer extends Html
 {

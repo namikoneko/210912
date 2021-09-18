@@ -1,14 +1,16 @@
 <?php
-//require_once "ShowRow.php";
+//require_once '../libs/idiorm.php';
+//ORM::configure('sqlite:./data.db');
 
 //class ShowRowTitle extends ShowRow
 class ShowRowTitle
 {
-  private $rows;
-  private $showRows;
-  private $showColArray;
-  private $strArray;
+  protected $rows;
+  protected $showRows;
+  protected $showColArray;
+  protected $strArray;
 
+  //protected function __construct($table, $showColArray)
   public function __construct($table, $showColArray)
   {
     $this->getRows($table);
@@ -18,13 +20,15 @@ class ShowRowTitle
   }
 
 // ここは適宜オーバーライドする
-  private function getRows($table)
+  //private function getRows($table)
+  protected function getRows($table)
   {
     $this->rows = ORM::for_table($table)->find_array();
   }
 
 //メインルーチン的
-  private function makeStrArray()
+  //private function makeStrArray()
+  protected function makeStrArray()
   {
     $rows = $this->rows;
 
@@ -60,7 +64,8 @@ class ShowRowTitle
   }//method
 
 // ここは適宜オーバーライドする
-  private function makeColArray($row)
+  //private function makeColArray($row)
+  protected function makeColArray($row)
   {
     foreach($this->showColArray as $showCol)
     {
@@ -77,7 +82,8 @@ class ShowRowTitle
     //return $this->strArray;
   }
 
-  private function choiceLinkCol($row,$showCol,$choiceCol)
+  //private function choiceLinkCol($row,$showCol,$choiceCol)
+  protected function choiceLinkCol($row,$showCol,$choiceCol)
   {
     if($showCol == $choiceCol)//カラム名がこれのとき，再度入れ直している
     {
@@ -85,7 +91,8 @@ class ShowRowTitle
     }
   }
 
-  private function makeColLink($row,$showCol)
+  //private function makeColLink($row,$showCol)
+  protected function makeColLink($row,$showCol)
   {
     $childStr = "child";
     $id = $row["id"];
@@ -96,7 +103,8 @@ class ShowRowTitle
     return $linkHtmlArray;
   }
 
-  private function makeLink($id)
+  //private function makeLink($id)
+  protected function makeLink($id)
   {
     $linkhtml = new LinkHtml();
     $linkHtmlArray["updLink"] = $linkhtml->upd($id);

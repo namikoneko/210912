@@ -1,7 +1,6 @@
 <?php
 //require_once '../../libs/idiorm.php';
 //ORM::configure('sqlite:../data.db');
-//require_once "GetRow.php";
 
 //class GetRowOne extends GetRow
 class GetRowOne

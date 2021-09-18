@@ -1,7 +1,4 @@
 <?php
-require_once "Html.php";
-//require_once "GetRowOne.php";
-require_once "InsFormPartial.php";
 
 //class UpdFormPartial
 class UpdFormPartial extends InsFormPartial

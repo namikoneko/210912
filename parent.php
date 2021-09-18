@@ -1,19 +1,37 @@
 <?php
-require_once '../libs/flight/Flight.php';
-require_once './myclass/InsExe.php';
-require_once './myclass/InsForm.php';
-require_once './myclass/GetRowParent.php';
-require_once './myclass/ShowRowTitle.php';
-require_once './myclass/LinkHtml.php';
-require_once './myclass/Header.php';
+//require_once '../libs/flight/Flight.php';
+//require_once './myclass/InsExe.php';
+//require_once './myclass/InsForm.php';
+//require_once './myclass/GetRowParent.php';
+//require_once './myclass/ShowRowTitle.php';
+//require_once './myclass/ShowRowFind.php';
+//require_once './myclass/LinkHtml.php';
+//require_once './myclass/Header.php';
+//require_once './myclass/Facade.php';
 
 Flight::route("/", function(){
+  rootUrl();
+});
 
+Flight::route("/find", function(){
+  $table = "parent";
+  $showColArray = ["title","text"];
+  $facade = new Facade($table, $showColArray);
+  $facade->switchExe();
+//  Facade::switchExe();
+  //$q = Flight::request()->query['q'];
+  //echo $q;
+  //rootUrl($q);
+});
+
+function rootUrl($q = "none")
+{
 //$dirname = "210905";
 
 $header = new Header();
 echo $header->output();
 
+  //echo $q;
 //ins-form作成
   $formArray = [
     ["type" => "typeText", "name" => "title", "col" => "title", "showKey" => "title"],
@@ -33,12 +51,16 @@ echo $header->output();
   echo $strArray["last"]; 
 
 //rowをshow
-  //$showrowtitle = new ShowRowTitle("parent");
   $table = "parent";
-  //$showColArray = ["title"];
-  //$showColArray = ["text"];
   $showColArray = ["title","text"];
-  $showrowtitle = new ShowRowTitle($table, $showColArray);
+  //$showrowtitle = new ShowRowFind($table, $showColArray);
+  //$showrowtitle = new ShowRowTitle($table, $showColArray);
+
+  $facade = new Facade($table, $showColArray);
+  //$facade->switchExe();
+  //Facade::switchExe();
+  $showrowtitle = $facade->switchExe();
+
   $showRows = $showrowtitle->output();
   foreach($showRows as $showRow)
   {
@@ -46,13 +68,14 @@ echo $header->output();
     echo $showRow["title"];
     echo "  ";
     echo $showRow["text"];
-    echo "  ";
-    echo $showRow["updLink"];
-    echo "  ";
-    echo $showRow["delLink"];
+//    echo "  ";
+//    echo $showRow["updLink"];
+//    echo "  ";
+//    echo $showRow["delLink"];
     echo "<br>";
   }
-});
+}//rootUrl
+//});
 
 Flight::route("/insexe", function(){
   $table = "parent";
@@ -111,7 +134,18 @@ Flight::route("/del/@id", function($id){
 
 Flight::route("/test2", function(){
 //echo "test";
-  $row = ORM::for_table('parent')->find_one(1)->as_array();
-  print_r($row);
-  echo $row["title"];
+  $s = new ShowRowFind();
+  $s->getRows();
+//$id = Flight::request()->query['id'];
+//echo $id;
+
+//  $row = ORM::for_table('parent')->find_one(1)->as_array();
+////  print_r($row);
+//  echo $row["title"];
+//  echo hoge();
 });
+
+function hoge()
+{
+  echo "hoge";
+}
